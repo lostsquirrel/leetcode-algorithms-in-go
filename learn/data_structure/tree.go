@@ -49,3 +49,20 @@ func postOrderTraversalHelper(root *TreeNode, r *[]int)  {
 		*r = append((*r), root.Val)
 	}
 }
+
+func levelOrder(root *TreeNode) [][]int {
+	a := make([][]int, 0)
+	queue := make(chan int, 10)
+	queue <- root.Val
+	x := <- queue
+	for ; x > 0; {
+
+	}
+	return a
+}
+
+func level(queue chan int) ([]int, chan int) {
+	row := make([]int, 0)
+	c := make(chan int, 10)
+	return row, c
+}
