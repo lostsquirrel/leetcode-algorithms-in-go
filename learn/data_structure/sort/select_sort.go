@@ -1,6 +1,6 @@
 package sort
 
-func select_sort(arr *[]string) {
+func SelectSort(arr *[]string) {
 	items := *arr
 	length := len(items)
 	for i:= 0; i < length; i++ {
