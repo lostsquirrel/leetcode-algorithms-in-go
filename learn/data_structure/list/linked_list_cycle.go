@@ -15,3 +15,22 @@ func hasCycle(head *ListNode) bool {
 	}
 	return false
 }
+
+func detectCycle(head *ListNode) *ListNode {
+	m := make(map[*ListNode]int)
+	var pw *ListNode
+	walker := head
+	index := 0
+	for walker != nil {
+		i, hasKey := m[walker]
+		if hasKey {
+			return pw
+		} else {
+			m[walker] = index
+			pw = walker
+			walker = walker.Next
+			index += 1
+		}
+	}
+	return nil
+}
