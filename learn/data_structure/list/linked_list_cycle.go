@@ -16,20 +16,37 @@ func hasCycle(head *ListNode) bool {
 	return false
 }
 
+// 快慢指针
+
+func hasCycle2(head *ListNode) bool {
+	// walker := head
+	fast := head
+	slow := head
+	for fast != nil {
+		fast = fast.Next
+		if fast == nil {
+			return false
+		}
+		fast = fast.Next
+		slow = slow.Next
+		if fast == slow {
+			return true
+		}
+	}
+	return false
+}
+
 func detectCycle(head *ListNode) *ListNode {
-	m := make(map[*ListNode]int)
-	var pw *ListNode
+	m := make(map[*ListNode]bool)
+
 	walker := head
-	index := 0
 	for walker != nil {
-		i, hasKey := m[walker]
+		_, hasKey := m[walker]
 		if hasKey {
-			return pw
+			return walker
 		} else {
-			m[walker] = index
-			pw = walker
+			m[walker] = true
 			walker = walker.Next
-			index += 1
 		}
 	}
 	return nil
