@@ -25,27 +25,32 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	var vTail *ListNode
 	walker := head
 	finished := false
+	group := make([]*ListNode, k)
 	for !finished && walker != nil {
-		index := k - 1
-		group := make([]*ListNode, k)
+		max_index := k - 1
+		index := max_index
+
 		for index > -1 {
 			if walker == nil {
 				finished = true
 				break
 			}
 			group[index] = walker
-
 			walker = walker.Next
 			index -= 1
 		}
 		if finished {
-			vTail.Next = group[k-1]
-		} else {
-			for _, e := range group {
-				if e == nil {
-					continue
-				}
+			if vHead.Next == nil {
+				vTail = group[k-1]
+			} else {
+				vTail.Next = group[k-1]
+			}
 
+		} else {
+
+			for index <= max_index-1 {
+				index += 1
+				e := group[index]
 				e.Next = nil
 				if vHead.Next == nil {
 					vHead.Next = e
