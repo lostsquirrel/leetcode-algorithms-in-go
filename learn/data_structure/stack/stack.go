@@ -29,10 +29,23 @@ func (s *IntStack) Push(n int) error {
 }
 
 func (s *IntStack) Pop() (int, error) {
+	r, e := s.Top()
+	if e != nil {
+		return 0, e
+	}
+	s.data[s.top] = 0
+	s.top -= 1
+	return r, nil
+}
+
+func (s *IntStack) Top() (int, error) {
 	if s.top < 0 {
 		return 0, errors.New("stack empty")
 	}
 	r := s.data[s.top]
-	s.top -= 1
 	return r, nil
+}
+
+func (s *IntStack) Empty() bool {
+	return s.top == -1
 }
