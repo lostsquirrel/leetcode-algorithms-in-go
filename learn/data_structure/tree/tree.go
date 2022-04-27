@@ -1,4 +1,4 @@
-package data_structure
+package tree
 
 // Definition for a binary tree node.
 type TreeNode struct {
@@ -28,7 +28,7 @@ func inOrderTraversal(root *TreeNode) []int {
 	return r
 }
 
-func inOrderTraversalHelp(root *TreeNode, r *[]int)  {
+func inOrderTraversalHelp(root *TreeNode, r *[]int) {
 	if root != nil {
 		inOrderTraversalHelp(root.Left, r)
 		*r = append((*r), root.Val)
@@ -42,7 +42,7 @@ func postOrderTraversal(root *TreeNode) []int {
 	return r
 }
 
-func postOrderTraversalHelper(root *TreeNode, r *[]int)  {
+func postOrderTraversalHelper(root *TreeNode, r *[]int) {
 	if root != nil {
 		postOrderTraversalHelper(root.Left, r)
 		postOrderTraversalHelper(root.Right, r)
@@ -54,8 +54,8 @@ func levelOrder(root *TreeNode) [][]int {
 	a := make([][]int, 0)
 	queue := make(chan int, 10)
 	queue <- root.Val
-	x := <- queue
-	for ; x > 0; {
+	x := <-queue
+	for x > 0 {
 
 	}
 	return a
