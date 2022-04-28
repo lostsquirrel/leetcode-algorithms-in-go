@@ -13,7 +13,10 @@ func TestValidate(t *testing.T) {
 		},
 	}
 	check(!isValidBST(tree), t)
-	tree = &TreeNode{
+
+}
+func TestValiate2(t *testing.T) {
+	tree := &TreeNode{
 		Val: 5,
 		Left: &TreeNode{
 			Val: 1,
@@ -29,10 +32,9 @@ func TestValidate(t *testing.T) {
 		},
 	}
 	check(isValidBST(tree), t)
-
 }
 
-func TestValidate2(t *testing.T) {
+func TestValidate3(t *testing.T) {
 
 	tree := &TreeNode{
 		Val: 5,

@@ -1,40 +1,20 @@
 package tree
 
 func isValidBST(root *TreeNode) bool {
-	isValid, _ := isValid(root)
-	return isValid
+
+	return isValid(root, nil, nil)
 }
 
-func isValid(root *TreeNode) (bool, []int) {
+func isValid(root, min, max *TreeNode) bool {
 	if root == nil {
-		return true, []int{}
+		return true
 	}
-	var c []int
-	c = append(c, root.Val)
-	if root.Left != nil {
-		isValidLeft, leftChildren := isValid(root.Left)
-		if !isValidLeft {
-			return false, []int{}
-		}
-		for _, child := range leftChildren {
-			if child >= root.Val {
-				return false, []int{}
-			}
-		}
-		c = append(c, leftChildren...)
+	if min != nil && root.Val <= min.Val {
+		return false
 	}
-	if root.Right != nil {
-		isValidRight, rightChildren := isValid(root.Right)
-		if !isValidRight {
-			return false, []int{}
-		}
-		for _, child := range rightChildren {
-			if child <= root.Val {
-				return false, []int{}
-			}
-		}
-		c = append(c, rightChildren...)
+	if max != nil && root.Val >= max.Val {
+		return false
 	}
 
-	return true, c
+	return isValid(root.Left, min, root) && isValid(root.Right, root, max)
 }
