@@ -1,11 +1,17 @@
 package tree
 
 func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-	if root.Val > p.Val && root.Val > q.Val {
-		return lowestCommonAncestor(root.Left, p, q)
+	walker := root
+	for walker != nil {
+
+		if walker.Val > p.Val && walker.Val > q.Val {
+			walker = walker.Left
+		} else if walker.Val < p.Val && walker.Val < q.Val {
+			walker = walker.Right
+		} else {
+			return walker
+		}
 	}
-	if root.Val < p.Val && root.Val < q.Val {
-		return lowestCommonAncestor(root.Right, p, q)
-	}
-	return root
+	return walker
+
 }
