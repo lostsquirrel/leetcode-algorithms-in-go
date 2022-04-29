@@ -1,9 +1,16 @@
 package divide_conquer
 
 func myPow(x float64, n int) float64 {
-	p := 1.0
-	for i := 0; i < n; {
-		p *= x
+	return pow(x, n)
+}
+
+func pow(x float64, n int) float64 {
+	if n == 0 {
+		return 1
 	}
-	return p
+	if n == 1 {
+		return x
+	}
+	h := n / 2
+	return pow(x, h) * pow(x, n-h)
 }
