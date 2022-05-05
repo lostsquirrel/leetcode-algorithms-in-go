@@ -2,13 +2,10 @@ package tree
 
 func levelOrder2(root *TreeNode) [][]int {
 	r := make([][]int, 0)
-	for s := []*TreeNode{root}; len(s) > 0; s = levelHelper(s) {
-		l := make([]int, 0)
-		for _, n := range s {
-			if n != nil {
-				l = append(l, n.Val)
-			}
-		}
+	s := []*TreeNode{root}
+	var l []int
+	for len(s) > 0 {
+		s, l = levelHelper(s)
 		if len(l) > 0 {
 			r = append(r, l)
 		}
@@ -17,15 +14,17 @@ func levelOrder2(root *TreeNode) [][]int {
 	return r
 }
 
-func levelHelper(prev []*TreeNode) []*TreeNode {
+func levelHelper(prev []*TreeNode) ([]*TreeNode, []int) {
 	next := make([]*TreeNode, 0)
+	l := make([]int, 0)
 	if prev == nil {
-		return next
+		return next, l
 	}
 	for _, node := range prev {
 		if node == nil {
 			continue
 		}
+		l = append(l, node.Val)
 		if node.Left != nil {
 			next = append(next, node.Left)
 		}
@@ -33,5 +32,5 @@ func levelHelper(prev []*TreeNode) []*TreeNode {
 			next = append(next, node.Right)
 		}
 	}
-	return next
+	return next, l
 }
