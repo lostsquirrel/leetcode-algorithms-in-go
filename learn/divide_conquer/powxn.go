@@ -1,13 +1,21 @@
 package divide_conquer
 
 func myPow(x float64, n int) float64 {
-	cache := make(map[int]float64)
-	cache[0] = 1.0
-	cache[1] = x
 	if n < 0 {
-		return 1 / pow(cache, x, -n)
+		n = -n
+		x = 1 / x
 	}
-	return pow(cache, x, n)
+	p := 1.0
+
+	for n > 0 {
+		if n&1 == 1 {
+			p *= x
+			// n -= 1
+		}
+		x *= x
+		n >>= 1
+	}
+	return p
 }
 
 func pow(cache map[int]float64, x float64, n int) float64 {
