@@ -8,7 +8,7 @@ type TreeNode struct {
 }
 
 func preOrderTraversal(root *TreeNode) []int {
-	r := make([]int, 0, 0)
+	r := make([]int, 0)
 	if root != nil {
 
 		r = append(r, root.Val)
@@ -23,7 +23,7 @@ func preOrderTraversal(root *TreeNode) []int {
 }
 
 func inOrderTraversal(root *TreeNode) []int {
-	r := make([]int, 0, 0)
+	r := make([]int, 0)
 	inOrderTraversalHelp(root, &r)
 	return r
 }
@@ -37,7 +37,7 @@ func inOrderTraversalHelp(root *TreeNode, r *[]int) {
 }
 
 func postOrderTraversal(root *TreeNode) []int {
-	r := make([]int, 0, 0)
+	r := make([]int, 0)
 	postOrderTraversalHelper(root, &r)
 	return r
 }
@@ -56,7 +56,7 @@ func levelOrder(root *TreeNode) [][]int {
 	queue <- root.Val
 	x := <-queue
 	for x > 0 {
-
+		x = <-queue
 	}
 	return a
 }
