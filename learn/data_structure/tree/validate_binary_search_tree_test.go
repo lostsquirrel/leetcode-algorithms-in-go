@@ -12,7 +12,7 @@ func TestValidate(t *testing.T) {
 			Val: 3,
 		},
 	}
-	check(!isValidBST(tree), t)
+	isFalse(!isValidBST(tree), t)
 
 }
 func TestValiate2(t *testing.T) {
@@ -31,7 +31,7 @@ func TestValiate2(t *testing.T) {
 			},
 		},
 	}
-	check(isValidBST(tree), t)
+	isFalse(isValidBST(tree), t)
 }
 
 func TestValidate3(t *testing.T) {
@@ -51,11 +51,5 @@ func TestValidate3(t *testing.T) {
 			},
 		},
 	}
-	check(isValidBST(tree), t)
-}
-
-func check(r bool, t *testing.T) {
-	if r {
-		t.Error("expected false get true")
-	}
+	isFalse(isValidBST(tree), t)
 }
