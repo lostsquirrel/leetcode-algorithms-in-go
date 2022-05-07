@@ -15,7 +15,6 @@ func createTree(s []*int) *TreeNode {
 				j := i + 1
 				parent := j/2 - 1
 				if j%2 == 0 {
-
 					nodes[parent].Left = vn
 				} else {
 					nodes[parent].Right = vn
